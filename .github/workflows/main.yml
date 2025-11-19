@@ -40,11 +40,18 @@ jobs:
         Start-Sleep -Seconds 10
         python test2.py
 
+    - name: Start main.py (background)
+      run: |
+        cd extracted
+        Write-Host "Starting main.py in background..."
+        Start-Process python test3.py
+        Start-Sleep -Seconds 10
+  
     - name: Run test3.py
       run: |
         cd extracted
         Start-Sleep -Seconds 10
-        python test3.py
+        python test4.py
 
     - name: Keep alive
       run: Start-Sleep -Seconds 21600 
